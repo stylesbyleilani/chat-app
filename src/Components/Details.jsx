@@ -255,12 +255,10 @@ const Details = () => {
         console.log("User's chat list updated.");
       }
 
-      // Fetch receiver's chats and delete the chat from their list as well
       const receiverChatsSnap = await getDoc(receiverChatsRef);
       if (receiverChatsSnap.exists()) {
         const receiverChats = receiverChatsSnap.data().chats;
         const updatedReceiverChats = receiverChats.filter(chat => chat.chatId !== chatId);
-        // Update the receiver's chats
         await updateDoc(receiverChatsRef, { chats: updatedReceiverChats });
         console.log("Receiver's chat list updated.");
       }
@@ -273,7 +271,7 @@ const Details = () => {
   return (
     <div className='rightsidebar w-[80%] max-w-[400px] bg-[#041D56] text-blue-100 rounded-lg p-8 h-full flex flex-col gap-6'>
       <div className="flex items-center gap-4">
-        <img src={user?.avartar || p1} alt="Profile" className='w-10 h-10 rounded-full'/>
+        <img src={user?.avatar || p1} alt="Profile" className='w-10 h-10 rounded-full'/>
         <div>
           <span className="font-semibold text-lg">
             {user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}

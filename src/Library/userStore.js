@@ -21,7 +21,6 @@ export const useUserStore = create((set) => ({
             } else {
                 set({currentUser:null, isLoading:false})
 
-              // docSnap.data() will be undefined in this case
               console.log("No such document!");
             }
             

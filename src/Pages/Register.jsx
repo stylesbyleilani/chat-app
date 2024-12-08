@@ -173,7 +173,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import chatGif from "../assets/sign.gif";
 import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff } from 'lucide-react';
-
+import { serverTimestamp } from 'firebase/firestore';
 const Register = () => {
   const [avartar, setAvatar] = useState({ file: null, url: "" });
   const [loading, setLoading] = useState(false);
@@ -189,6 +189,39 @@ const Register = () => {
     }
   };
 
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const formData = new FormData(e.target);
+  //   const { username, email, password } = Object.fromEntries(formData);
+    
+  //   try {
+  //     const res = await createUserWithEmailAndPassword(auth, email, password);
+  //     const imgUrl = await upload(avartar.file)
+      
+  //     await setDoc(doc(db, "users", res.user.uid), {
+  //       username,
+  //       email,
+  //       avartar: imgUrl,
+  //       id: res.user.uid,
+  //       blocked: []
+  //     });
+
+  //     await setDoc(doc(db, "userchats", res.user.uid), {
+  //       chats: []
+  //     });
+
+  //     toast.success("Account created successfully!");
+  //     navigate('/');
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error(error.message || "Registration failed. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -196,30 +229,69 @@ const Register = () => {
     const { username, email, password } = Object.fromEntries(formData);
     
     try {
+      // Validate input
+      if (!username || !email || !password) {
+        toast.error("Please fill in all fields");
+        setLoading(false);
+        return;
+      }
+  
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      const imgUrl = await upload(avartar.file)
       
-      await setDoc(doc(db, "users", res.user.uid), {
-        username,
-        email,
-        avartar: imgUrl,
+      // Ensure imgUrl has a default value
+      const imgUrl = avartar.file ? await upload(avartar.file) : "../assets/p1.jpg";
+      
+      // Add more robust error checking
+      if (!res.user) {
+        throw new Error("User creation failed");
+      }
+  
+      // Prepare user data with default values
+      const userData = {
+        username: username || "Anonymous",
+        email: email,
+        avatar: imgUrl,
         id: res.user.uid,
-        blocked: []
-      });
-
+        blocked: [],
+        createdAt: serverTimestamp() // Consider adding a timestamp
+      };
+  
+      // Validate user data before writing
+      await setDoc(doc(db, "users", res.user.uid), userData);
+  
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: []
       });
-
+  
       toast.success("Account created successfully!");
       navigate('/');
     } catch (error) {
-      console.error(error);
-      toast.error(error.message || "Registration failed. Please try again.");
+      console.error("Detailed error:", {
+        code: error.code,
+        message: error.message,
+        name: error.name
+      });
+  
+      // More detailed error handling
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          toast.error("Email is already registered");
+          break;
+        case 'auth/invalid-email':
+          toast.error("Invalid email format");
+          break;
+        case 'auth/weak-password':
+          toast.error("Password is too weak");
+          break;
+        default:
+          toast.error(`Registration failed: ${error.message}`);
+      }
     } finally {
       setLoading(false);
     }
   };
+
+
 
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();

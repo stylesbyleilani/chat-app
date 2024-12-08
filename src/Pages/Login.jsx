@@ -1,114 +1,5 @@
 
 
-
-// import React, { useState } from 'react';
-// import { toast, ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { signInWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../Library/firebase';
-// import { Link } from 'react-router-dom';
-// import chat from "../assets/chat2.gif"
-// import { FcGoogle } from "react-icons/fc";
-
-
-// const Login = () => {
-//   const [loading, setLoading] = useState(false);
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     const formData = new FormData(e.target);
-//     const { email, password } = Object.fromEntries(formData);
-
-//     try {
-//       await signInWithEmailAndPassword(auth, email, password);
-//       toast.success("Login successful!");
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(error.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className='flex bg-blue-900'>
-//     <div className="text-gray-700 flex flex-col items-start w-full max-w-lg mt-8 mx-auto p-6 sm:p-8">
-//       <ToastContainer />
-      
-//       <div className="login flex flex-col items-start w-full p-6 sm:p-8 border rounded-lg shadow-sm">
-//         <h2 className="text-left text-2xl font-semibold text-gray-800 mb-2">Welcome back!</h2>
-//         <p className="text-gray-500 text-sm mb-6">Please enter your details to access your account</p>
-        
-//         <form
-//           className="flex flex-col gap-5 w-full"
-//           onSubmit={handleLogin}
-//         >
-//           <div className="space-y-1.5">
-//             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-//               Email
-//             </label>
-//             <input
-//               type="email"
-//               id="email"
-//               placeholder="Enter your email"
-//               name="email"
-//               className="outline-none py-2.5 px-4 border border-gray-300 rounded-md w-full text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-//             />
-//           </div>
-
-//           <div className="space-y-1.5">
-//             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-//               Password
-//             </label>
-//             <input
-//               type="password"
-//               id="password"
-//               placeh9lder="Enter your password"
-//               name="password"
-//               className="outline-none py-2.5 px-4 border border-gray-300 rounded-md w-full text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-//             />
-//           </div>
-
-//           <button
-//             disabled={loading}
-//             className="mt-2 py-2.5 px-4 w-full rounded-md bg-[#041D56] text-white font-medium shadow-sm hover:bg-[#032d75] disabled:opacity-50 transition-colors"
-//           >
-//             {loading ? "Signing in..." : "Sign in"}
-//           </button>
-
-//           <button
-//             className="mt-2 py-2.5 px-4 w-full flex font-semibold  gap-2 items-center justify-center rounded-md  text-blue-700 border-blue-700 border shadow-sm hover:bg-[#032d75] disabled:opacity-50 transition-colors"
-//           >
-//             <FcGoogle className='text-2xl'/>
-//                   Sign in with google
-//           </button>
-
-//           <p className="text-center text-gray-600">
-//             Don't have an account?{" "}
-//             <Link to="/register" className="text-blue-600 font-medium hover:text-blue-700">
-//           Sign up
-//             </Link>
-//           </p>
-//         </form>
-//       </div>
-//     </div>
-
-// <div className="div-2 ">
-// <img src={chat} alt="" className='w-[600px] h-[600px] ' />
-// </div>
-
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-
-
-
-
-
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -133,7 +24,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
-      navigate('/'); // Redirect after successful login
+      navigate('/'); 
     } catch (error) {
       console.error(error);
       toast.error(error.message || "Login failed. Please try again.");
@@ -163,7 +54,6 @@ const Login = () => {
       <ToastContainer position="top-right" />
       
       <div className="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-4xl overflow-hidden">
-        {/* Image Section */}
         <div className="hidden md:flex md:w-1/2 bg-blue-100 items-center justify-center p-8">
           <img 
             src={chatGif} 
@@ -172,7 +62,6 @@ const Login = () => {
           />
         </div>
 
-        {/* Login Form Section */}
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
             Welcome Back!

@@ -23,10 +23,10 @@ const AddUser = () => {
     try {
       const userRef = collection(db, "users");
       const q = query(userRef, where("username", "==", username));
-      const querySnapshot = await getDocs(q); // Use getDocs instead of getDoc
+      const querySnapshot = await getDocs(q); 
 
       if (!querySnapshot.empty) {
-        setUser(querySnapshot.docs[0].data()); // Set the first matching user
+        setUser(querySnapshot.docs[0].data()); 
       } else {
         console.log("User not found");
         toast.error("user not found")
@@ -41,7 +41,6 @@ const AddUser = () => {
   const handleAdd = async () => {  
     
     try {
-      // Generate a new chat document with a unique ID
       const ChatRef = collection(db, "chats");
       const userChatRef = collection(db, "userchats");
 
@@ -53,23 +52,7 @@ const AddUser = () => {
       });
 
 
-      // await updateDoc(doc(userChatRef, user.id),{
-      //         chats:arrayUnion({
-      //           chatId:newChatRef.id,
-      //           lastMessage:"",
-      //           receiverId:currentUser.id,
-      //           updatedAt:Date.now(),
-      //         })
-      //       })
-
-      //       await updateDoc(doc(newChatRef, currentUser.id),{
-      //               chats:arrayUnion({
-      //                 chatId:newChatRef.id,
-      //                 lastMessage:"",
-      //                 receiverId:user.id,
-      //                 updatedAt:Date.now(),
-      //               })
-      //             })
+      
       await setDoc(doc(userChatRef, user.id), {
         chats: arrayUnion({
           chatId: newChatRef.id,
@@ -102,7 +85,6 @@ const AddUser = () => {
 
   return (
 
-    // <div className='add-user  absolute border-[2px] border-blue-700 p-8 rounded-md w-max h-max bg-blue-900  top-0 bottom-0 left-0 right-0 m-auto'>
              <div className=" 
         fixed inset-0 md:inset-auto rounded-md bg-blue-950
         md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2
@@ -119,7 +101,7 @@ const AddUser = () => {
       {user && (
         <div className="user mt-7 flex items-center justify-between">
           <div className="detail flex items-center gap-3">
-            <img src={user.avartar || p1} alt="User Avatar" className='w-10 h-10 rounded-full'/>
+            <img src={user.avatar || p1} alt="User Avatar" className='w-10 h-10 rounded-full'/>
             <span>{user.username}</span>
             <button onClick={handleAdd} className='py-2 px-3 bg-gray-600 font-medium text-blue-100 rounded-md cursor-pointer ml-7'><FaPlus className='font-medium text-lg'/> </button>
 

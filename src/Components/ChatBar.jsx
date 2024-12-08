@@ -161,7 +161,7 @@ const ChatBar = () => {
         <div className="profile flex items-center gap-3">
           {/* <IoIosArrowBack className='text-xl '/> */}
 
-          <img src={user?.avartar || p1} alt="Profile" className='w-10 h-10 rounded-full'/>
+          <img src={user?.avatar || p1} alt="Profile" className='w-10 h-10 rounded-full'/>
           <div className="flex flex-col gap-1">
             <h1 className='font-medium text-xl text-gray-200'>
               {user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}

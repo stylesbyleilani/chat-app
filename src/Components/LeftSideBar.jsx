@@ -78,7 +78,7 @@ const LeftSideBar = () => {
           {currentUser?.username.charAt(0).toUpperCase() + currentUser?.username.slice(1)}
 
           </h1>
-          <img src={currentUser.avartar} alt="" className='w-10 h-10 rounded-full' />
+          <img src={currentUser.avatar} alt="" className='w-10 h-10 rounded-full' />
         </div>
 
         <div className="chats mt-3 flex-1">
@@ -113,7 +113,7 @@ const LeftSideBar = () => {
       className="diuser flex mt-5 items-center   justify-between" 
       onClick={() => handleSelect(chat)}
     >
-      <img src={chat.user.avartar || p1} alt="" className='w-10 h-10 rounded-full' />
+      <img src={chat.user.avatar || p1} alt="" className='w-10 h-10 rounded-full' />
       
       <div className="div flex flex-col items-center">
         {/* <h1 className='font-medium text-lg text-blue-100'>{chat.user.username}</h1> */}

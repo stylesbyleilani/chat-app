@@ -13,25 +13,12 @@ import HomePage from './Pages/HomePage';
 const Layout = ()=>{
   return(
 <div className="app  p-0 m-0">
-{/* <Navbar/>
-<Outlet/>
-<Pooter/> */}
+
 </div>
   )
 };
 
 const router = createBrowserRouter([
-  // { 
-  //    path:"/",
-  //    element:<Layout/>,
-  //    children:[
-  //     {
-  //       path:"/",
-  //       element:<HomePage/>
-  //     }
-  //    ]
-
-  // },
 
   {
     path:"/",
@@ -56,7 +43,6 @@ const App = () => {
 
 
   return (
-    // <div className='app  w-[90vw] h-[90vh] rounded-lg bg-black p-2 m-2'>
       <div className='app w-[100vw]'>
       <RouterProvider router={router}/>
     </div>
