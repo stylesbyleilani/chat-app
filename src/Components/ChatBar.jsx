@@ -159,7 +159,6 @@ const ChatBar = () => {
       {/* Chat Header */}
       <div className='flex items-center bg-gray-800 justify-between p-3'>
         <div className="profile flex items-center gap-3">
-          {/* <IoIosArrowBack className='text-xl '/> */}
 
           <img src={user?.avatar || p1} alt="Profile" className='w-10 h-10 rounded-full'/>
           <div className="flex flex-col gap-1">
@@ -188,10 +187,16 @@ const ChatBar = () => {
       <div className="chats flex-1 overflow-y-auto p-3 space-y-3">
         {chat?.messages?.map((message, index) => (
           <div key={index} className={`flex items-start gap-2 ${message.senderId === currentUser.id ? 'justify-end' : ''}`}>
-            <img src={p1} alt="Profile" className='w-7 h-7 object-cover rounded-full' />
+            {/* <img src={p1} */}
+             <img src={user?.avatar || p1}
+             alt="Profile" className='w-7 h-7 object-cover rounded-full' />
             <div className={`px-4 py-3 rounded-lg max-w-xs ${message.senderId === currentUser.id ? 'bg-blue-700 text-white' : 'bg-gray-700 text-gray-300'}`}>
               <p>{message.text}</p>
-              {message.img && <img src={message.img} alt="Attachment" className='w-20 h-20 mt-2' />}
+
+              {message.img &&
+               <img src={message.img}
+              // <img src={user?.avatar || p1}
+               alt="Attachment" className='w-20 h-20 mt-2' />}
             </div>
           </div>
         ))}
@@ -203,35 +208,6 @@ const ChatBar = () => {
         )}
       </div>
 
-      {/* Message Input Section */}
-      {/* <div className="send flex items-center gap-3 p-3 border-t border-gray-700 relative">
-        <div className="flex items-center gap-3 text-gray-500">
-          <label htmlFor="file">
-            <IoIosAttach size={24}/>
-          </label>
-          <input type="file" id='file' style={{ display: "none" }} onChange={handleImg} />
-          <FaUser size={24}/>
-        </div>
-        <div className="message-input flex-grow bg-gray-600 rounded-lg flex items-center py-3 px-3">
-          <input 
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-            disabled={isCurrentUserBlocked || isReceiverBlocked}
-            type="text" 
-            placeholder={ isCurrentUserBlocked || isReceiverBlocked ? "You can't send a message" : "Type a message ..." }
-            className={`flex-grow bg-transparent outline-none text-gray-100 placeholder-gray-500`}
-          />
-          <div onClick={() => setEmoji(!emoji)}><MdEmojiEmotions className='text-gray-400' size={24} /></div>
-          {emoji && (
-            <div className="absolute bottom-20 left-5">
-              <EmojiPicker onEmojiClick={handleEmoji}  width={270} height={300}/>
-            </div>
-          )}
-        </div>
-        <button onClick={handleSend} className=' bg-blue-900 p-2 rounded-md text-gray-300'>
-          <RiSendPlaneFill size={24}/>
-        </button>
-      </div>  */}
         
 
 
@@ -295,25 +271,6 @@ const ChatBar = () => {
                   </div>
                 )}
               </div>
-               {/* <button  onClick={() => setEmoji(!emoji)}><Smile className='text-gray-400' size={24}/>
-                className="p-2 text-gray-400 hover:text-gray-300 transition-colors"
-              
-                <Smile className="w-6 h-6"  onClick={handleEmoji}/> 
-                <EmojiPicker onEmojiClick={handleEmoji}  width={270} height={300}/>  
-  */}
-
-
-            {/* <button  onClick={() => setEmoji(!emoji)}>  */}
-            {/* <EmojiPicker onEmojiClick={handleEmoji}  width={270} height={300}> */}
-            {/* <Smile className='text-gray-400' size={24}/>  */}
-
-            {/* </EmojiPicker>  */}
-              {/* <Smile className='text-gray-400' size={24}/>  */}
-              
-
-            
-
-            {/* </button> */}
 
 
 
