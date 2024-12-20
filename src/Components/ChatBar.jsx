@@ -196,7 +196,7 @@ const ChatBar = () => {
               {message.img &&
                <img src={message.img}
               // <img src={user?.avatar || p1}
-               alt="Attachment" className='w-20 h-20 mt-2' />}
+               alt="Attachment" className='lg:w-40 w-40 h-40 lg:h-40 lg:mt-2' />}
             </div>
           </div>
         ))}
