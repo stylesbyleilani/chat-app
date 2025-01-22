@@ -8,8 +8,8 @@ import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  // apiKey:"AIzaSyBZQUZL-hPyFHsth60Y0x2DgkIUcXEdoAM",
+  // apiKey: import.meta.env.VITE_API_KEY,
+  apiKey: "AIzaSyBZQUZL-hPyFHsth60Y0x2DgkIUcXEdoAM",
   authDomain: "leilani-chatapp.firebaseapp.com",
   projectId: "leilani-chatapp",
   storageBucket: "leilani-chatapp.appspot.com",
